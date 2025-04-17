@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JEE Main 2025 Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            padding-bottom: 60px; /* Space for footer */
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Login Page Styles */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            background-color: white;
+        }
+        
+        @media (min-width: 768px) {
+            .header {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 10px 20px;
+            }
+        }
+        
+        .left-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        @media (min-width: 768px) {
+            .left-logo {
+                margin-bottom: 0;
+            }
+        }
+        
+        .left-logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .left-logo-text {
+            font-size: 12px;
+            line-height: 1.3;
+        }
+        
+        @media (min-width: 768px) {
+            .left-logo-text {
+                font-size: 14px;
+            }
+        }
+        
+        .center-text {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.5;
+            color: black;
+            margin-bottom: 10px;
+        }
+        
+        @media (min-width: 768px) {
+            .center-text {
+                font-size: 16px;
+                margin-bottom: 0;
+            }
+        }
+        
+        .right-logo img {
+            height: 40px;
+        }
+        
+        .navy-bar {
+            background-color: #0a2240;
+            height: 25px;
+            width: 100%;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 15px auto;
+            border: 1px solid #ddd;
+            padding: 15px;
+            background-color: white;
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                margin: 30px auto;
+                padding: 20px;
+            }
+        }
+        
+        .title-bar {
+            background-color: #0a2240;
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .lock-icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        .form-group {
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 768px) {
+            .form-group {
+                flex-direction: row;
+                align-items: center;
+            }
+        }
+        
+        .form-label {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        @media (min-width: 768px) {
+            .form-label {
+                width: 30%;
+                text-align: right;
+                padding-right: 15px;
+                font-size: 16px;
+                margin-bottom: 0;
+            }
+        }
+        
+        .form-input {
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .form-input {
+                width: 70%;
+            }
+        }
+        
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px; /* Better for mobile */
+        }
+        
+        .captcha-display {
+            background-color: #000066;
+            color: white;
+            padding: 8px 12px;
+            display: inline-block;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 16px; /* Easier to read on mobile */
+        }
+        
+        .refresh-icon {
+            color: #4CAF50;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .login-btn {
+            background-color: #1a9651;
+            color: white;
+            border: none;
+            padding: 12px 30px; /* Larger touch target */
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            margin-right: 10px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .login-btn {
+                width: auto;
+                margin-top: 0;
+            }
+        }
+        
+        .forgot-password {
+            color: #0000FF;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .footer {
+            background-color: #0a2240;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            font-size: 12px;
+            position: relative;
+            margin-top: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .footer {
+                padding: 15px;
+                font-size: 14px;
+            }
+        }
+        
+        .case-sensitive {
+            color: #1a9651;
+            font-weight: bold;
+        }
+        
+        /* Scorecard Page Styles */
+        .scorecard-container {
+            max-width: 800px;
+            margin: 10px auto;
+            background: white;
+            border: 1px solid #000;
+            display: none; /* Initially hidden */
+            overflow-x: auto; /* Allow horizontal scrolling for tables */
+        }
+        
+        @media (min-width: 768px) {
+            .scorecard-container {
+                margin: 20px auto;
+            }
+        }
+        
+        .scorecard-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5px;
+            border-bottom: 1px solid #000;
+            position: relative;
+        }
+        
+        @media (min-width: 768px) {
+            .scorecard-header {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 5px 10px;
+            }
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px; /* Ensure table has minimum width */
+        }
+        
+        th, td {
+            border: 1px solid #000;
+            padding: 4px 6px;
+            font-size: 10px;
+        }
+        
+        @media (min-width: 768px) {
+            th, td {
+                font-size: 11px;
+            }
+        }
+        
+        th {
+            background-color: #f0f0f0;
+            font-weight: normal;
+            text-align: left;
+        }
+        
+        .print-button {
+            background-color: #ff0000;
+            color: white;
+            padding: 3px 15px;
+            border: none;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        @media (min-width: 768px) {
+            .print-button {
+                position: absolute;
+                top: 5px;
+                right: 10px;
+                margin-top: 0;
+            }
+        }
+        
+        .photo-cell {
+            width: 110px;
+            height: 130px;
+            border: 1px solid #000;
+            text-align: center;
+            vertical-align: top;
+            padding: 0;
+            background-color: white;
+        }
+        
+        .photo-box {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .qr-code {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            text-align: center;
+            vertical-align: middle;
+            padding: 5px;
+        }
+        
+        .section-header {
+            background-color: #f0f0f0;
+            text-align: center;
+            font-size: 12px;
+            padding: 4px;
+            border: 1px solid #000;
+        }
+        
+        .cutoff-header {
+            text-align: center;
+            font-size: 11px;
+            padding: 2px;
+            border: 1px solid #000;
+            border-top: none;
+        }
+        
+        .scorecard-footer {
+            text-align: right;
+            font-size: 9px;
+            padding: 2px 5px;
+            color: #666;
+        }
+        
+        /* Success and Error Messages */
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1a9651;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Transition Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
+        
+        /* Buttons container for mobile */
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        @media (min-width: 768px) {
+            .buttons-container {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+        
+        #logoutButton {
+            margin-top: 15px;
+        }
+        
+        @media (min-width: 768px) {
+            #logoutButton {
+                margin-top: 0;
+                margin-left: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page Content -->
+    <div id="loginPage">
+        <div class="header">
+            <div class="left-logo">
+                <img src="/api/placeholder/40/40" alt="Government of India Logo" />
+                <div class="left-logo-text">
+                    <strong>Department of Higher Education</strong><br>
+                    Ministry of Education<br>
+                    Government of India
+                </div>
+            </div>
+            <div class="center-text">
+                JOINT ENTRANCE EXAMINATION (Main) – 2025<br>
+                SESSION 2 (APRIL 2025)<br>
+                NTA SCORE CARD: Paper 2 (B.E./B Tech.)
+            </div>
+            <div class="right-logo">
+                <img src="/api/placeholder/40/40" alt="National Testing Agency Logo" />
+            </div>
+        </div>
+        
+        <div class="navy-bar"></div>
+        
+        <div class="container">
+            <div class="title-bar">
+                <span class="lock-icon">🔒</span>
+                <strong>View Result</strong>
+            </div>
+            
+            <div id="message" class="message" style="display: none;"></div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <div class="form-label">Application Number:</div>
+                    <div class="form-input">
+                        <input type="text" name="application" id="application" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-label">Password:</div>
+                    <div class="form-input">
+                        <input type="password" name="password" id="password" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-label">Enter CAPTCHA<span class="case-sensitive">(case sensitive)</span>:</div>
+                    <div class="form-input">
+                        <input type="text" name="captcha" id="captchaInput" />
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-label">CAPTCHA:</div>
+                    <div class="form-input">
+                        <span id="captchaText" class="captcha-display">VCEP2H</span>
+                        <span id="refreshCaptcha" class="refresh-icon" style="cursor: pointer;">↻</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-label"></div>
+                    <div class="form-input">
+                        <button type="submit" class="login-btn">LOGIN</button>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Authenticating, please wait...</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scorecard Page Content -->
+    <div id="scorecardPage" style="display: none;">
+        <div class="scorecard-container">
+            <div class="scorecard-header">
+                <div class="left-logo">
+                    <img src="/api/placeholder/40/40" alt="Ministry Logo" />
+                    <div style="font-size: 10px;">
+                        <strong>Ministry of Education</strong><br>
+                        Government of India
+                    </div>
+                </div>
+                <div class="center-text">
+                    Joint Entrance Examination (Main) - 2025<br>
+                    NTA Score<br>
+                    NTA Score - Paper 1 (B.E./B.Tech.)
+                </div>
+                <div class="right-logo">
+                    <img src="/api/placeholder/40/40" alt="NTA Logo" />
+                </div>
+                <button class="print-button" id="printButton">Print</button>
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table>
+                    <tr>
+                        <td style="width: 15%;">Application No.</td>
+                        <td style="width: 18%;" id="applicationNumber">250310280662</td>
+                        <td style="width: 15%;">Roll No. (Session 1)</td>
+                        <td style="width: 18%;">WB13100713</td>
+                        <td style="width: 15%;">Roll No. (Session 2)</td>
+                        <td style="width: 18%;">WB13200045</td>
+                        <td rowspan="8" class="photo-cell">
+                            <img src="/api/placeholder/110/130" alt="Candidate Photo" class="photo-box" />
+                            <div style="padding-top: 5px;"></div>
+                            <div class="qr-code">
+                                <img src="/api/placeholder/90/90" alt="QR Code" />
+                            </div>
+                        </td>                
+                    </tr>
+                    <tr>
+                        <td>Candidate's Name</td>
+                        <td colspan="5">PRIYANSHU SENAPATI</td>
+                    </tr>
+                    <tr>
+                        <td>Mother's Name</td>
+                        <td colspan="5">SOMA SENAPATI</td>
+                    </tr>
+                    <tr>
+                        <td>Father's Name</td>
+                        <td colspan="5">SWAPAN SENAPATI</td>
+                    </tr>
+                    <tr>
+                        <td>Category</td>
+                        <td>General</td>
+                        <td>Person with Disability(PwD)</td>
+                        <td colspan="3">No</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>Male</td>
+                        <td>Date of Birth</td>
+                        <td colspan="3">06-06-2007</td>
+                    </tr>
+                    <tr>
+                        <td>State Code of Eligibility</td>
+                        <td>WEST BENGAL</td>
+                        <td>Nationality</td>
+                        <td colspan="3">Indian</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="section-header">
+                NTA Score for Paper 1 (B.E./B.Tech.)
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table>
+                    <tr>
+                        <th style="width: 15%;">Subject</th>
+                        <th style="width: 15%;">Session 1</th>
+                        <th style="width: 15%;">Session 2</th>
+                        <th style="width: 30%;">Final (based on best of the Two in Total)</th>
+                    </tr>
+                    <tr>
+                        <td>Physics</td>
+                        <td>41.7937213</td>
+                        <td>93.5675821</td>
+                        <td>93.5675821</td>
+                    </tr>
+                    <tr>
+                        <td>Chemistry</td>
+                        <td>69.1229678</td>
+                        <td>98.6537223</td>
+                        <td>98.6537223</td>
+                    </tr>
+                    <tr>
+                        <td>Mathematics</td>
+                        <td>56.2107974</td>
+                        <td>91.2156823</td>
+                        <td>91.2156823</td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td>56.2107974</td>
+                        <td>94.867129202</td>
+                        <td>94.867129202</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table>
+                    <tr>
+                        <td style="width: 15%;">NTA Score in Words</td>
+                        <td>NINETY FOUR point EIGHT SIX SEVEN ONE TWO NINE TWO ZERO TWO Only</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table>
+                    <tr>
+                        <th rowspan="2" style="width: 10%;">Course</th>
+                        <th colspan="10" style="text-align: center;">ALL INDIA RANK based on FINAL NTA Score</th>
+                    </tr>
+                    <tr>
+                        <th>CRL</th>
+                        <th>GEN-EWS</th>
+                        <th>OBC-NCL</th>
+                        <th>SC</th>
+                        <th>ST</th>
+                        <th>CRL-PwD</th>
+                        <th>GEN-EWS-PwD</th>
+                        <th>OBC-NCL-PwD</th>
+                        <th>SC-PwD</th>
+                        <th>ST-PwD</th>
+                    </tr>
+                    <tr>
+                        <td>B.E./B.Tech.</td>
+                        <td>59853</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="section-header">
+                Category wise Cut-off NTA Score for JEE (Advanced) - 2025 based on Paper 1 (B.E./B.Tech.)**
+            </div>
+            
+            <div class="cutoff-header">
+                Cut-off Total NTA Score based on Paper 1 (B.E./B.Tech.)
+            </div>
+            
+            <div style="overflow-x: auto;">
+                <table>
+                    <tr>
+                        <th style="width: 10%;">Category</th>
+                        <th>Common Rank List (CRL)</th>
+                        <th>GEN-EWS (GEN-EWS)</th>
+                        <th>Other Backward Class (OBC-NCL)</th>
+                        <th>Scheduled Caste (SC)</th>
+                        <th>Scheduled Tribe (ST)</th>
+                        <th>Category-PwD</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>92.4121583</td>
+                        <td>63.1114141</td>
+                        <td>67.0090297</td>
+                        <td>43.0820954</td>
+                        <td>26.7771328</td>
+                        <td>0.0031029</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="scorecard-footer">
+                Generated On: 17/04/2025
+            </div>
+        </div>
+        
+        <div class="container" style="text-align: center; margin-top: 20px;">
+            <button id="logoutButton" class="login-btn">Logout</button>
+        </div>
+    </div>
+    
+    <div class="footer">
+        This site is designed and hosted by NIC PEP Division. The contents are provided by NTA. For any further information, please contact NTA.
+    </div>
+
+    <script>
+        // Function to generate random captcha
+        function generateCaptcha() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let captcha = '';
+            
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(Math.random() * chars.length);
+                captcha += chars[randomIndex];
+            }
+            
+            return captcha;
+        }
+        
+        // Function to show message
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = 'message ' + type;
+            messageDiv.style.display = 'block';
+        }
+        
+        // Function to hide message
+        function hideMessage() {
+            document.getElementById('message').style.display = 'none';
+        }
+        
+        // Function to show loading indicator
+        function showLoading() {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('loginForm').style.display = 'none';
+        }
+        
+        // Function to hide loading indicator
+        function hideLoading() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        }
+        
+        // Function to show scorecard
+        function showScorecard() {
+            const applicationNumber = document.getElementById('application').value;
+            document.getElementById('applicationNumber').textContent = applicationNumber || '250310280662';
+            
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('scorecardPage').style.display = 'block';
+            document.querySelector('.scorecard-container').style.display = 'block';
+            document.querySelector('.scorecard-container').classList.add('fade-in');
+            
+            // Adjust footer position for scorecard page
+            document.querySelector('.footer').style.position = 'relative';
+            
+            // Scroll to top when showing scorecard
+            window.scrollTo(0, 0);
+        }
+        
+        // Update captcha text
+        function refreshCaptcha() {
+            const captchaText = document.getElementById('captchaText');
+            captchaText.textContent = generateCaptcha();
+        }
+        
+        // Event listener for form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            hideMessage();
+            
+            const applicationNumber = document.getElementById('application').value;
+            const password = document.getElementById('password').value;
+            const captchaInput = document.getElementById('captchaInput').value;
+            const captchaText = document.getElementById('captchaText').textContent;
+            
+            // Validate form
+            if (!applicationNumber) {
+                showMessage('Please enter your Application Number', 'error');
+                return;
+            }
+            
+            if (!password) {
+                showMessage('Please enter your Password', 'error');
+                return;
+            }
+            
+            if (!captchaInput) {
+                showMessage('Please enter the CAPTCHA', 'error');
+                return;
+            }
+            
+            if (captchaInput !== captchaText) {
+                showMessage('Invalid CAPTCHA. Please try again.', 'error');
+                refreshCaptcha();
+                document.getElementById('captchaInput').value = '';
+                return;
+            }
+            
+            // Show loading and simulate authentication process
+            showLoading();
+            
+            // Simulate server processing delay (2 seconds)
+            setTimeout(function() {
+                hideLoading();
+                showMessage('Login successful! Redirecting to scorecard...', 'success');
+                
+                // Wait a moment and then show the scorecard
+                setTimeout(function() {
+                    showScorecard();
+                }, 1500);
+            }, 2000);
+        });
+        
+        // Event listener for refresh captcha button
+        document.getElementById('refreshCaptcha').addEventListener('click', refreshCaptcha);
+        
+        // Event listener for print button
+        document.getElementById('printButton').addEventListener('click', function() {
+            window.print();
+        });
+        
+        // Event listener for logout button
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            // Reset form
+            document.getElementById('loginForm').reset();
+            refreshCaptcha();
+            hideMessage();
+            
+            // Hide scorecard and show login
+            document.getElementById('scorecardPage').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
+            
+            // Reset footer position
+            document.querySelector('.footer').style.position = 'relative';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        });
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            refreshCaptcha();
+            
+            // Force initial layout adjustment
+            adjustLayout();
+            
+            // Set up resize handler for responsive adjustments
+            window.addEventListener('resize', adjustLayout);
+            
+            // Handle orientation changes on mobile devices
+            window.addEventListener('orientationchange', function() {
+                setTimeout(adjustLayout, 100); // Short delay to allow browser to complete orientation change
+            });
+            
+            function adjustLayout() {
+                // Adjust footer positioning
+                const viewportHeight = window.innerHeight;
+                const bodyHeight = document.body.offsetHeight;
+                const footer = document.querySelector('.footer');
+                
+                // Dynamic footer positioning based on content height
+                if (bodyHeight < viewportHeight) {
+                    footer.style.position = 'fixed';
+                    footer.style.bottom = '0';
+                } else {
+                    footer.style.position = 'relative';
+                    footer.style.bottom = 'auto';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
